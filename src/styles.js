@@ -98,7 +98,7 @@ export const NavItem = styled(NavLink)`
 export const NavProduct = styled(NavLink)`
   font-size: 25px;
   padding-right: 25px;
-
+  color: orange;
   &.active {
     color: Red;
     font-weight: bold;

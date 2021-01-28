@@ -5,6 +5,7 @@ import ProductItem from "./ProductItem";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
 import products from "../products";
+import { Helmet } from "react-helmet";
 
 const ProductList = () => {
   const [query, setQuery] = useState("");
@@ -19,6 +20,9 @@ const ProductList = () => {
     <div>
       <SearchBar setQuery={setQuery} />
       <ListWrapper>{productList}</ListWrapper>
+      <Helmet>
+        <title>Products List </title>
+      </Helmet>
     </div>
   );
 };

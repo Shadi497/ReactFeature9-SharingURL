@@ -1,25 +1,16 @@
 // Styling
-import {
-  Description,
-  GlobalStyle,
-  ShopImage,
-  ThemeButton,
-  Title,
-  NavItem,
-  NavProduct,
-} from "./styles";
+import { GlobalStyle } from "./styles";
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
-import { NavLink } from "react-router-dom";
 
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 // Components
-import ProductDetail from "./components/ProductDetail";
 import ProductList from "./components/ProductList";
 import { ThemeProvider } from "styled-components";
 // Data
 import products from "./products";
+import ProductDetail from "./components/ProductDetail";
 
 const theme = {
   light: {
@@ -38,14 +29,6 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [_products, setProducts] = useState(products);
-
-  const deleteProduct = (productId) => {
-    const updatedProducts = _products.filter(
-      (product) => product.id !== +productId
-    );
-    setProducts(updatedProducts);
-  };
 
   const toggleTheme = () =>
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
@@ -56,9 +39,14 @@ function App() {
 
       <NavBar currentTheme={currentTheme} toggleTheme={toggleTheme} />
       <Switch>
+        <Route exact path="/products/:productSlug">
+          <ProductDetail products={products} />
+        </Route>
+
         <Route exact path="/products">
           <ProductList />
         </Route>
+
         <Route exact path="/">
           <Home />
         </Route>
