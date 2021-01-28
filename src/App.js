@@ -5,8 +5,12 @@ import {
   ShopImage,
   ThemeButton,
   Title,
+  NavItem,
+  NavProduct,
 } from "./styles";
 import React, { useState } from "react";
+import { Route, Switch } from "react-router";
+import { NavLink } from "react-router-dom";
 
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
@@ -34,7 +38,6 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [product, setProduct] = useState(null);
   const [_products, setProducts] = useState(products);
 
   const deleteProduct = (productId) => {
@@ -42,40 +45,24 @@ function App() {
       (product) => product.id !== +productId
     );
     setProducts(updatedProducts);
-    setProduct(null);
-  };
-
-  const selectProduct = (productId) => {
-    const selectedProduct = products.find(
-      (product) => product.id === productId
-    );
-    setProduct(selectedProduct);
   };
 
   const toggleTheme = () =>
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
 
-  const setView = () =>
-    product ? (
-      <ProductDetail
-        product={product}
-        deleteProduct={deleteProduct}
-        selectProduct={selectProduct}
-      />
-    ) : (
-      <ProductList
-        products={_products}
-        deleteProduct={deleteProduct}
-        selectProduct={selectProduct}
-      />
-    );
-
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
+
       <NavBar currentTheme={currentTheme} toggleTheme={toggleTheme} />
-      <Home />
-      {setView()}
+      <Switch>
+        <Route exact path="/products">
+          <ProductList />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
     </ThemeProvider>
   );
 }
