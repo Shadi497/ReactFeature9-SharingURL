@@ -1,5 +1,6 @@
 // Components
 import { Helmet } from "react-helmet";
+import DeleteButton from "./buttons/DeleteButton";
 // Styling
 import { DetailWrapper } from "../styles";
 import { Redirect, useParams } from "react-router-dom";
@@ -18,6 +19,11 @@ const ProductDetail = (props) => {
       <img src={product.image} alt={product.name} />
       <p>{product.description}</p>
       <p>{product.price} KD</p>
+      <DeleteButton
+        productId={product.id}
+        deleteProduct={props.deleteProduct}
+      />
+
       <Helmet>
         <title>{`${product.name} Details`} </title>
       </Helmet>

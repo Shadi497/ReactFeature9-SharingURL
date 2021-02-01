@@ -2,8 +2,10 @@ import styled, { createGlobalStyle } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export const DeleteButtonStyled = styled.p`
-  color: ${(props) => props.theme.red};
+export const DeleteButtonStyled = styled.button`
+  color: red;
+  font-weight: bold;
+  margin-left: 70px;
 `;
 
 export const Description = styled.h4`
@@ -51,7 +53,8 @@ export const ProductWrapper = styled.div`
     text-align: center;
 
     &.product-price {
-      color: ${(props) => props.theme.pink};
+      color: red;
+      font-weight: bold;
     }
   }
 `;
@@ -82,8 +85,8 @@ export const Title = styled.h1`
   text-align: center;
 `;
 export const Logoimg = styled.img`
-  width: 95px;
-  height: 95px;
+  width: 80px;
+  height: 80px;
   border-radius: 30px;
 `;
 export const NavItem = styled(NavLink)`

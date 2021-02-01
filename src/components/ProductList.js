@@ -7,14 +7,20 @@ import { useState } from "react";
 import products from "../products";
 import { Helmet } from "react-helmet";
 
-const ProductList = () => {
+const ProductList = (props) => {
   const [query, setQuery] = useState("");
 
-  const productList = products
+  const productList = props.products
     .filter((product) =>
       product.name.toLowerCase().includes(query.toLowerCase())
     )
-    .map((product) => <ProductItem product={product} key={product.id} />);
+    .map((product) => (
+      <ProductItem
+        product={product}
+        key={product.id}
+        deleteProduct={props.deleteProduct}
+      />
+    ));
 
   return (
     <div>

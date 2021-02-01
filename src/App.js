@@ -9,7 +9,7 @@ import NavBar from "./components/NavBar";
 import ProductList from "./components/ProductList";
 import { ThemeProvider } from "styled-components";
 // Data
-import products from "./products";
+import data from "./products";
 import ProductDetail from "./components/ProductDetail";
 
 const theme = {
@@ -29,9 +29,16 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
+  const [products, setProducts] = useState(data);
 
-  const toggleTheme = () =>
+  const toggleTheme = () => {
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
+  };
+
+  const deleteProduct = (productId) => {
+    const updatedList = products.filter((product) => product.id !== productId);
+    setProducts(updatedList);
+  };
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
@@ -40,11 +47,11 @@ function App() {
       <NavBar currentTheme={currentTheme} toggleTheme={toggleTheme} />
       <Switch>
         <Route exact path="/products/:productSlug">
-          <ProductDetail products={products} />
+          <ProductDetail products={products} deleteProduct={deleteProduct} />
         </Route>
 
         <Route exact path="/products">
-          <ProductList />
+          <ProductList products={products} deleteProduct={deleteProduct} />
         </Route>
 
         <Route exact path="/">

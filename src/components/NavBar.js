@@ -1,5 +1,6 @@
 // Styling
 import { ThemeButton, Logo, Logoimg, NavProduct } from "../styles";
+
 import img from "../logo.jpg";
 
 const NavBar = (props) => {
