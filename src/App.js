@@ -54,7 +54,6 @@ function App() {
         <Route exact path="/products/:productSlug">
           <ProductDetail deleteProduct={deleteProduct} />
         </Route>
-
         <Route exact path="/products">
           <ProductList deleteProduct={deleteProduct} />
         </Route>
