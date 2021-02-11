@@ -3,14 +3,20 @@ import { ListWrapper } from "../styles";
 // Components
 import ProductItem from "./ProductItem";
 import SearchBar from "./SearchBar";
+import AddButton from "./Buttons/AddButton";
 import { useState } from "react";
-import products from "../products";
 import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
+import Loading from "./Loading";
 
 const ProductList = (props) => {
   const [query, setQuery] = useState("");
 
-  const productList = props.products
+  const products = useSelector((state) => state.products);
+  const loading = useSelector((state) => state.loading);
+
+  if (loading) return <Loading />;
+  const productList = products
     .filter((product) =>
       product.name.toLowerCase().includes(query.toLowerCase())
     )
@@ -24,6 +30,7 @@ const ProductList = (props) => {
 
   return (
     <div>
+      <AddButton />
       <SearchBar setQuery={setQuery} />
       <ListWrapper>{productList}</ListWrapper>
       <Helmet>

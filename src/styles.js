@@ -5,7 +5,14 @@ import { Link } from "react-router-dom";
 export const DeleteButtonStyled = styled.button`
   color: red;
   font-weight: bold;
-  margin-left: 70px;
+  margin-left: 0px;
+`;
+
+export const AddButtonStyled = styled.button`
+  color: red;
+  font-weight: bold;
+  margin-left: 30px;
+  margin-top: 20px;
 `;
 
 export const Description = styled.h4`
@@ -41,9 +48,39 @@ export const ListWrapper = styled.div`
   display: flex;
 `;
 
-export const ProductWrapper = styled.div`
-  margin: 20px;
+export const ListForm = styled.div`
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 90px;
+`;
 
+export const Form = styled.form`
+  width: 50%;
+`;
+
+export const FormButton = styled.div`
+  align-items: center;
+  justify-content: center;
+  display: flex;
+`;
+
+export const TwoButtons = styled.div`
+  align-items: center;
+  justify-content: center;
+  display: flex;
+`;
+
+export const H = styled.h1`
+  margin-bottom: 50px;
+`;
+
+export const ProductWrapper = styled.div`
+  margin-top: 20px;
+  margin-right: 50px;
+  margin-bottom: 20px;
+  margin-left: 20px;
   img {
     width: 200px;
     height: 200px;
@@ -110,4 +147,12 @@ export const NavProduct = styled(NavLink)`
 
 export const Logo = styled(Link)`
   text-align: center;
+`;
+
+export const LoadingWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  margin: 10%;
 `;

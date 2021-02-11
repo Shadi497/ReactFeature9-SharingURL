@@ -4,12 +4,12 @@ import { Helmet } from "react-helmet";
 const Home = () => {
   return (
     <>
-      <Title>Cookies and Beyond</Title>
-      <Description>Where cookie maniacs gather</Description>
+      <Title>Life Pharamcy</Title>
+      <Description>A better way to shop for health & beauty!</Description>
 
       <ShopImage
         alt="cookie shop"
-        src="https://i.pinimg.com/originals/8f/cf/71/8fcf719bce331fe39d7e31ebf07349f3.jpg"
+        src="https://www.emporium.co.th/wp-content/uploads/2018/05/Cover-8-1024x682.jpg"
       />
       <Helmet>
         <title>Home Page </title>
