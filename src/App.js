@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import NavBar from "./components/NavBar";
 import { ThemeProvider } from "styled-components";
 import Routes from "./components/Routes";
+import Cookies from "js-cookie";
 
 const theme = {
   light: {
@@ -22,12 +23,14 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState(
-    localStorage.getItem("Theme")
+    // localStorage.getItem("Theme")
+    Cookies.get("Theme") || "light"
   );
 
   const toggleTheme = () => {
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
   };
+  Cookies.set("Theme", currentTheme);
   localStorage.setItem("Theme", currentTheme);
 
   return (
