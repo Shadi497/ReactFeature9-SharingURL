@@ -1,14 +1,19 @@
 import { useState } from "react";
-import { createProduct, updateProduct } from "../store/actions";
+import {
+  createProduct,
+  updateProduct,
+} from "../../store/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { ListForm, Form, FormButton, H } from "../styles";
+import { ListForm, Form, FormButton, H } from "../../styles";
 
 const ProductForm = () => {
-  const { productSlug } = useParams();
+  const { productSlug, shopId } = useParams();
 
   const foundproducts = useSelector((state) =>
-    state.products.find((product) => product.slug === productSlug)
+    state.productReducer.products.find(
+      (product) => product.slug === productSlug
+    )
   );
 
   const [product, setProduct] = useState(
@@ -18,6 +23,7 @@ const ProductForm = () => {
           name: "",
           price: 0,
           image: "",
+          shopId: shopId,
         }
   );
 
@@ -28,12 +34,18 @@ const ProductForm = () => {
   const handleChange = (event) => {
     setProduct({ ...product, [event.target.name]: event.target.value });
   };
+  const handleImage = (event) => {
+    setProduct({ ...product, image: event.target.files[0] });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (foundproducts) dispatch(updateProduct(product));
-    else dispatch(createProduct(product));
-    history.push("/products");
+    else {
+      dispatch(createProduct(product));
+    }
+    history.push("/shops");
+    // window.location.reload(true);
   };
 
   return (
@@ -77,10 +89,9 @@ const ProductForm = () => {
           <div class="col-sm-10">
             <input
               class="form-control"
-              value={product.image}
-              type="text"
+              type="file"
               name="image"
-              onChange={handleChange}
+              onChange={handleImage}
             />{" "}
           </div>
         </div>

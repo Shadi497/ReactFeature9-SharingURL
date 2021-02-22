@@ -1,16 +1,16 @@
 // Components
 import { Helmet } from "react-helmet";
-import DeleteButton from "./Buttons/DeleteButton";
+import DeleteButton from "../Buttons/DeleteButton";
 // Styling
-import { DetailWrapper } from "../styles";
+import { DetailWrapper } from "../../styles";
 import { Redirect, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import UpdateButton from "./Buttons/UpdateButton";
+import UpdateButton from "../Buttons/UpdateButton";
 
 const ProductDetail = (props) => {
   const { productSlug } = useParams();
 
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.productReducer.products);
 
   const product = products.find((product) => product.slug === productSlug);
 

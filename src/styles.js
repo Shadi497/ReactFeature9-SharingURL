@@ -120,6 +120,7 @@ export const ThemeButton = styled.button`
 
 export const Title = styled.h1`
   text-align: center;
+  margin-bottom: 65px;
 `;
 export const Logoimg = styled.img`
   width: 80px;
@@ -137,6 +138,7 @@ export const NavItem = styled(NavLink)`
 
 export const NavProduct = styled(NavLink)`
   font-size: 25px;
+  margin-top: 15px;
   padding-right: 25px;
   color: orange;
   &.active {

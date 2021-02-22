@@ -1,25 +1,30 @@
 // Styling
-import { ListWrapper } from "../styles";
+import { ListWrapper, Title } from "../../styles";
 // Components
-import ProductItem from "./ProductItem";
-import SearchBar from "./SearchBar";
-import AddButton from "./Buttons/AddButton";
+import ProductItem from "../Products/ProductItem";
+import SearchBar from "../SearchBar";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
-import Loading from "./Loading";
+import Loading from "../Loading";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import AddButton from "../Buttons/AddButton";
 
 const ProductList = (props) => {
   const [query, setQuery] = useState("");
 
-  const products = useSelector((state) => state.products);
-  const loading = useSelector((state) => state.loading);
+  const { shopId } = useParams();
 
-  if (loading) return <Loading />;
-  const productList = products
+  const shop = useSelector((state) =>
+    state.shopReducer.shops.find((shop) => shop.id === +shopId)
+  );
+
+  const productList = props.products
     .filter((product) =>
       product.name.toLowerCase().includes(query.toLowerCase())
     )
+    .filter((product) => product.shopId === +shopId)
     .map((product) => (
       <ProductItem
         product={product}
@@ -30,8 +35,12 @@ const ProductList = (props) => {
 
   return (
     <div>
-      <AddButton />
+      {/* <AddButton /> */}
+      <Title>{shop.name}</Title>
       <SearchBar setQuery={setQuery} />
+      <Link to={`/shops/${shopId}/products/new`}>
+        <AddButton />
+      </Link>
       <ListWrapper>{productList}</ListWrapper>
       <Helmet>
         <title>Products List </title>
