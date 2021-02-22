@@ -33,12 +33,12 @@ export default function Routes() {
         <ProductForm />
       </Route>
 
-      <Route exact path="/shops/:shopId">
-        <ProductList deleteProduct={deleteProduct} products={Sproducts} />
+      <Route exact path="/shops/new">
+        <ShopForm />
       </Route>
 
-      <Route exact path={"/shops/new"}>
-        <ShopForm />
+      <Route exact path="/shops/:shopId">
+        <ProductList deleteProduct={deleteProduct} products={Sproducts} />
       </Route>
 
       <Route path="/shops">

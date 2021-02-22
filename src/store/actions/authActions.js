@@ -1,15 +1,20 @@
 import instance from "./instance";
 import decode from "jwt-decode";
 
+const setUser = (token) => {
+  localStorage.setItem("Token", token);
+  instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  return {
+    type: "SET_USER",
+    payload: decode(token),
+  };
+};
+
 export const signup = (newUser, history) => {
   return async (dispatch) => {
     try {
       const res = await instance.post("/signup", newUser);
-      localStorage.setItem("Token", res.data.token);
-      dispatch({
-        type: "SET_USER",
-        payload: decode(res.data.token),
-      });
+      dispatch(setUser(res.data.token));
       history.replace("/");
       alert("Successfully signed up");
     } catch (error) {
@@ -22,11 +27,7 @@ export const signin = (userData, history) => {
   return async (dispatch) => {
     try {
       const res = await instance.post("/signin", userData);
-      localStorage.setItem("Token", res.data.token);
-      dispatch({
-        type: "SET_USER",
-        payload: decode(res.data.token),
-      });
+      dispatch(setUser(res.data.token));
       history.replace("/");
       alert("Successfully signed in");
     } catch (error) {}
@@ -35,6 +36,7 @@ export const signin = (userData, history) => {
 
 export const signout = () => {
   localStorage.removeItem("Token");
+  delete instance.defaults.headers.common.Authorization;
   return {
     type: "SET_USER",
     payload: null,

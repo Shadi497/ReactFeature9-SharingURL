@@ -31,7 +31,7 @@ const ShopList = () => {
         <title>Shops List </title>
       </Helmet>
       <SearchBar setQuery={setQuery} />
-      <Link to={"/shops/new"}>
+      <Link to="/shops/new">
         <AddButton />
       </Link>
       <ListWrapper>{shopList}</ListWrapper>

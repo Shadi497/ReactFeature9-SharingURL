@@ -38,7 +38,7 @@ const ProductList = (props) => {
   return (
     <div>
       {/* <AddButton /> */}
-      <Title>{shop.name}</Title>
+      <Title>{shop ? shop.name : ""}</Title>
       <SearchBar setQuery={setQuery} />
       <Link to={`/shops/${shopId}/products/new`}>
         <AddButton />
