@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -56,6 +56,8 @@ export default function Routes() {
       <Route exact path="/">
         <Home />
       </Route>
+
+      <Redirect to="/" />
     </Switch>
   );
 }

@@ -17,6 +17,7 @@ export const AddButtonStyled = styled.button`
 
 export const Description = styled.h4`
   text-align: center;
+  margin-top: 35px;
 `;
 
 export const DetailWrapper = styled.div`
@@ -105,6 +106,7 @@ export const SearchBarStyled = styled.input`
 
 export const ShopImage = styled.img`
   display: block;
+  margin-top: 35px;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
@@ -112,7 +114,7 @@ export const ShopImage = styled.img`
 
 export const ThemeButton = styled.button`
   font-size: 1em;
-  padding: 0.25em 1em;
+  // padding: 0.25em 1em;
   border-radius: 3px;
   background-color: ${(props) => props.theme.mainColor};
   color: ${(props) => props.theme.backgroundColor};
@@ -121,6 +123,10 @@ export const ThemeButton = styled.button`
 export const Title = styled.h1`
   text-align: center;
   margin-bottom: 65px;
+`;
+
+export const TitleH = styled.h1`
+  text-align: center;
 `;
 export const Logoimg = styled.img`
   width: 80px;

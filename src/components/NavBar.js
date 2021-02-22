@@ -4,13 +4,11 @@ import { FaSignOutAlt } from "react-icons/fa";
 import img from "../logo.jpg";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import { signout } from "../store/actions/authActions";
 
 const NavBar = (props) => {
   const user = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
-  const history = useHistory();
   return (
     <nav className="navbar navbar-expand">
       <Logo to="/">
@@ -24,7 +22,8 @@ const NavBar = (props) => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                padding: "25px 25px 0 0",
+                margin: "15px 25px 0 0",
+                // padding: "25px 25px 0 0",
               }}
             >
               <b>Welcome, {user.firstname} !</b>
@@ -34,13 +33,27 @@ const NavBar = (props) => {
         ) : (
           <>
             <Link to={"/signup"}>
-              <button type="button" class="btn btn-outline-success mt-3 mr-4">
+              <button
+                type="button"
+                class={
+                  props.currentTheme === "light"
+                    ? "btn btn-outline-success mt-3 mr-4"
+                    : "btn btn-success mt-3 mr-4"
+                }
+              >
                 Sign Up
               </button>
             </Link>
 
             <Link to={"/signin"}>
-              <button type="button" class="btn btn-outline-success mt-3 mr-4">
+              <button
+                type="button"
+                class={
+                  props.currentTheme === "light"
+                    ? "btn btn-outline-success mt-3 mr-4"
+                    : "btn btn-success mt-3 mr-4"
+                }
+              >
                 Sign In
               </button>
             </Link>
@@ -49,9 +62,20 @@ const NavBar = (props) => {
 
         {/* <NavProduct to="/shops/">Products</NavProduct> */}
         {user && <NavProduct to="/shops">Shops</NavProduct>}
-        <ThemeButton className="nav-item" onClick={props.toggleTheme}>
+        {/* <ThemeButton className="nav-item" onClick={props.toggleTheme}> */}
+        <button
+          type="button"
+          class={
+            props.currentTheme === "light"
+              ? "btn btn-dark mt-3 mr-4"
+              : "btn btn-light mt-3 mr-4"
+          }
+          onClick={props.toggleTheme}
+        >
           {props.currentTheme === "light" ? "Dark" : "Light"} Mode
-        </ThemeButton>
+        </button>
+
+        {/* </ThemeButton> */}
       </div>
     </nav>
   );

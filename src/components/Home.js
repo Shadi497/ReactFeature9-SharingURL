@@ -1,10 +1,10 @@
-import { Description, ShopImage, Title } from "../styles";
+import { Description, ShopImage, TitleH } from "../styles";
 import { Helmet } from "react-helmet";
 
 const Home = () => {
   return (
     <>
-      <Title>Life Pharamcy</Title>
+      <TitleH>Life Pharamcy</TitleH>
       <Description>A better way to shop for health & beauty!</Description>
 
       <ShopImage
