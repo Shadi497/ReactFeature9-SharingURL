@@ -4,6 +4,7 @@ import decode from "jwt-decode";
 const setUser = (token) => {
   localStorage.setItem("Token", token);
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  console.log(instance.defaults.headers.common.Authorization);
   return {
     type: "SET_USER",
     payload: decode(token),
@@ -49,10 +50,7 @@ export const checkToken = () => (dispatch) => {
     const user = decode(token);
 
     if (Date.now() < user.exp) {
-      dispatch({
-        type: "SET_USER",
-        payload: user,
-      });
+      dispatch(setUser(token));
     } else {
       dispatch(signout());
     }
